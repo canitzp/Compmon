@@ -10,6 +10,7 @@ import de.canitzp.rendering.ImageLoader;
 import de.canitzp.world.Coords;
 import de.canitzp.world.Side;
 import de.canitzp.world.World;
+import de.canitzp.world.WorldRegister;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
@@ -17,17 +18,19 @@ import org.newdawn.slick.opengl.Texture;
 
 public class Block extends Moving {
 
-    private Texture texture  = ImageLoader.loadTexture("res/test.png");
+    private Texture unknownTexture  = ImageLoader.loadTexture("res/test.png");
+    private Texture texture;
     private int x, y, width, height;
     private Coords coords;
 
-    public Block(Coords coords, int width, int height) {
-        super(coords.getX(), coords.getY(), width, height);
+    public Block(Coords coords, int width, int height, World world) {
+        super(coords.getX(), coords.getY(), width, height, world);
         this.x = coords.getX();
         this.y = coords.getY();
         this.width = width;
         this.height = height;
         this.coords = coords;
+        this.texture = unknownTexture;
     }
 
     public void startup(){
@@ -35,11 +38,8 @@ public class Block extends Moving {
     }
 
     public void render(){
-        GL11.glPushMatrix();
-
         Color.white.bind();
         texture.bind();
-
         GL11.glBegin(GL11.GL_QUADS);
         {
             GL11.glTexCoord2f(0, 0);
@@ -50,18 +50,14 @@ public class Block extends Moving {
             GL11.glVertex2f(x + width, y + height);
             GL11.glTexCoord2f(0, texture.getHeight());
             GL11.glVertex2f(x, y + height);
-
-
         }
         GL11.glEnd();
-        GL11.glRotatef(180, 0, 0, 1);
-        GL11.glPopMatrix();
     }
 
 
 
-    public static Block block1 = new Block(new Coords(200, 200), 100, 100);
-    public static Block block2 = new Block(new Coords(100, 50), 10 ,10);
+    public static Block block1 = new Block(new Coords(200, 200), 100, 100, WorldRegister.world);
+    public static Block block2 = new Block(new Coords(100, 50), 10 ,10, WorldRegister.world1_1);
 
     public static void register(){
         World.registerBlock(block1);
@@ -84,6 +80,15 @@ public class Block extends Moving {
         } else return Side.INSIDE;
 
         return null;
+    }
+
+    public Block setTexture(Texture texture){
+        if(texture.getImageHeight() > 0){
+            this.texture = texture;
+        } else {
+            this.texture = unknownTexture;
+        }
+        return this;
     }
 
 

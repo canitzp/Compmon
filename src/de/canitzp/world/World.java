@@ -8,7 +8,10 @@ package de.canitzp.world;
 
 import de.canitzp.objects.Block;
 import de.canitzp.objects.Moving;
+import de.canitzp.rendering.ImageLoader;
 import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.opengl.Texture;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,9 +19,8 @@ import java.util.Set;
 public class World {
 
     private int WIDTH, HEIGHT;
-    private static World theWorld;
     private static Set<Block> blockList = new HashSet<Block>();
-
+    private static Texture texture = ImageLoader.loadTexture("res/world/WorldTile1-Grassland.png");
 
     public World(int WIDTH, int HEIGHT){
         this.WIDTH = WIDTH;
@@ -26,8 +28,22 @@ public class World {
     }
 
     public void render() {
-        GL11.glClearColor(0, 204, 0, 0);
+        Color.white.bind();
+        texture.bind();
+        GL11.glBegin(GL11.GL_QUADS);
+        {
+            GL11.glTexCoord2f(0, 0);
+            GL11.glVertex2f(0, 0);
+            GL11.glTexCoord2f(texture.getWidth(), 0);
+            GL11.glVertex2f(WIDTH, 0);
+            GL11.glTexCoord2f(texture.getWidth(), texture.getHeight());
+            GL11.glVertex2f(WIDTH, HEIGHT);
+            GL11.glTexCoord2f(0, texture.getHeight());
+            GL11.glVertex2f(0, HEIGHT);
+        }
+        GL11.glEnd();
     }
+
 
     public void update(Moving object){
         System.gc();
@@ -55,13 +71,16 @@ public class World {
 
     }
 
-    public static World registerBlock(Block block){
+    public static void registerBlock(Block block){
         blockList.add(block);
-        return getWorld();
     }
 
-    public static World getWorld(){
-        return theWorld;
+
+    public int getWIDTH() {
+        return WIDTH;
     }
 
+    public int getHEIGHT() {
+        return HEIGHT;
+    }
 }

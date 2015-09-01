@@ -6,10 +6,13 @@
 
 package de.canitzp.objects;
 
+import de.canitzp.world.World;
+
 public class Moving {
 
     protected int x, y;
     protected int width, height;
+    protected World world;
 
 
     public int getX() {
@@ -44,11 +47,12 @@ public class Moving {
         this.height = height;
     }
 
-    public Moving(int x, int y, int width, int height){
+    public Moving(int x, int y, int width, int height, World world){
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.world = world;
     }
 
     public void moveX(int x){
@@ -58,5 +62,7 @@ public class Moving {
         this.y += y;
     }
 
-
+    public World getWorld() {
+        return world;
+    }
 }
