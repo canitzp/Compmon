@@ -18,13 +18,17 @@ import java.util.Set;
 
 public class World {
 
-    private int WIDTH, HEIGHT;
     private static Set<Block> blockList = new HashSet<Block>();
     private static Texture texture = ImageLoader.loadTexture("res/world/WorldTile1-Grassland.png");
+    private int WIDTH, HEIGHT;
 
     public World(int WIDTH, int HEIGHT){
         this.WIDTH = WIDTH;
         this.HEIGHT = HEIGHT;
+    }
+
+    public static void registerBlock(Block block) {
+        blockList.add(block);
     }
 
     public void render() {
@@ -43,7 +47,6 @@ public class World {
         }
         GL11.glEnd();
     }
-
 
     public void update(Moving object){
         System.gc();
@@ -70,11 +73,6 @@ public class World {
         }
 
     }
-
-    public static void registerBlock(Block block){
-        blockList.add(block);
-    }
-
 
     public int getWIDTH() {
         return WIDTH;

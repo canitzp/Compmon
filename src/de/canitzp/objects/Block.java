@@ -18,6 +18,8 @@ import org.newdawn.slick.opengl.Texture;
 
 public class Block extends Moving {
 
+    public static Block block1 = new Block(new Coords(200, 200), 100, 100, WorldRegister.world);
+    public static Block block2 = new Block(new Coords(100, 50), 10, 10, WorldRegister.world1_1);
     private Texture unknownTexture  = ImageLoader.loadTexture("res/test.png");
     private Texture texture;
     private int x, y, width, height;
@@ -31,6 +33,11 @@ public class Block extends Moving {
         this.height = height;
         this.coords = coords;
         this.texture = unknownTexture;
+    }
+
+    public static void register() {
+        World.registerBlock(block1);
+        World.registerBlock(block2);
     }
 
     public void startup(){
@@ -54,22 +61,11 @@ public class Block extends Moving {
         GL11.glEnd();
     }
 
-
-
-    public static Block block1 = new Block(new Coords(200, 200), 100, 100, WorldRegister.world);
-    public static Block block2 = new Block(new Coords(100, 50), 10 ,10, WorldRegister.world1_1);
-
-    public static void register(){
-        World.registerBlock(block1);
-        World.registerBlock(block2);
-    }
-
     public boolean checkCollisionWithObject(Moving object){
         if((y + height) <= object.getY()) return false;
         if(y >= (object.getY() + object.getHeight())) return false;
         if((x + width) <= object.getX()) return false;
-        if(x >= (object.getX() + object.getWidth())) return false;
-        return true;
+        return x < (object.getX() + object.getWidth());
     }
     public Side checkInstaCollisionWithObject(Moving object){
         if(checkCollisionWithObject(object)){

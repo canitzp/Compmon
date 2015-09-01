@@ -12,6 +12,6 @@ public enum Side {
     BOTTOM,
     LEFT,
     RIGHT,
-    INSIDE;
+    INSIDE
 
 }

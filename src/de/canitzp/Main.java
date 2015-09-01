@@ -18,13 +18,13 @@ public class Main {
     private static Player player;
     private static World world;
 
-    public static void main(String[] args){
-        Window.startup();
-    }
-
-    public Main(){
+    public Main() {
         player = new Player(0, 0, 16, 16, WorldList.WORLD.getWorld());
 
+    }
+
+    public static void main(String[] args){
+        Window.startup();
     }
 
     //Look to Window preInit()

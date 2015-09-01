@@ -15,6 +15,14 @@ public class Moving {
     protected World world;
 
 
+    public Moving(int x, int y, int width, int height, World world) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.world = world;
+    }
+
     public int getX() {
         return x;
     }
@@ -45,14 +53,6 @@ public class Moving {
 
     public void setHeight(int height) {
         this.height = height;
-    }
-
-    public Moving(int x, int y, int width, int height, World world){
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.world = world;
     }
 
     public void moveX(int x){

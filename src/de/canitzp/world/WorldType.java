@@ -10,6 +10,6 @@ public enum WorldType {
 
     EMPTY,
     INUSE,
-    FULL;
+    FULL
 
 }
