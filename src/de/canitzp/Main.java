@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2015. canitzp
+ * All Rights of this Project contains to me.
+ * It is not allowed to copy or redistribute this Code.
+ */
+
 package de.canitzp;
 
 import de.canitzp.objects.Block;
@@ -10,7 +16,6 @@ public class Main {
 
     private static World world;
     private static Player player;
-    private static Block block;
 
     public static void main(String[] args){
         Window.startup();
