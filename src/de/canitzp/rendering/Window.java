@@ -77,7 +77,7 @@ public class Window{
     private static void initEngine(){
         try {
             Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
-            Display.setTitle("Pokemon");
+            Display.setTitle("Compmon");
             Display.create();
             Keyboard.create();
         } catch (LWJGLException e) {

@@ -6,11 +6,10 @@
 
 package de.canitzp.objects;
 
-import de.canitzp.rendering.ImageLoader;
+import de.canitzp.rendering.ImageList;
 import de.canitzp.world.Coords;
 import de.canitzp.world.Side;
 import de.canitzp.world.World;
-import de.canitzp.world.WorldRegister;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
@@ -18,9 +17,9 @@ import org.newdawn.slick.opengl.Texture;
 
 public class Block extends Moving {
 
-    public static Block block1 = new Block(new Coords(200, 200), 100, 100, WorldRegister.world1_2);
-    public static Block block2 = new Block(new Coords(100, 50), 10, 10, WorldRegister.world1_1);
-    private Texture unknownTexture  = ImageLoader.loadTexture("res/test.png");
+    protected boolean canCollide;
+    protected boolean isGrass;
+    private Texture unknownTexture = ImageList.unknown;
     private Texture texture;
     private int x, y, width, height;
     private Coords coords;
@@ -33,15 +32,8 @@ public class Block extends Moving {
         this.height = height;
         this.coords = coords;
         this.texture = unknownTexture;
-    }
-
-    public static void register() {
-        World.registerBlock(block1);
-        World.registerBlock(block2);
-    }
-
-    public void startup(){
-
+        this.canCollide = true;
+        this.isGrass = false;
     }
 
     public void render(Player player) {
@@ -76,11 +68,12 @@ public class Block extends Moving {
             if(object.getY() + object.getWidth() - 1 == y || object.getY() + object.getWidth() == y) return Side.BOTTOM;
             if(object.getX() + object.getHeight() - object.getWidth() + 1 == x + width || object.getX() + object.getHeight() -object.getWidth() == x + width) return Side.RIGHT;
             if(object.getY() + object.getWidth() - object.getHeight() + 1 == y + height || object.getY() + object.getWidth() - object.getHeight() == y + height) return Side.TOP;
-        } else return Side.INSIDE;
-
+            else return Side.INSIDE;
+        }
         return null;
     }
 
+    //=====
     public Block setTexture(Texture texture){
         if(texture.getImageHeight() > 0){
             this.texture = texture;
@@ -93,6 +86,26 @@ public class Block extends Moving {
     public World getWorld() {
         return world;
     }
+
+    public Block noCollision() {
+        this.canCollide = false;
+        return this;
+    }
+
+    public boolean canCollide() {
+        return this.canCollide;
+    }
+
+    public Block setToGrass() {
+        this.isGrass = true;
+        return this;
+    }
+
+    public boolean isGrass() {
+        return this.isGrass;
+    }
+
+
 
 
 }

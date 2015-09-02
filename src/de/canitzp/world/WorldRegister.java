@@ -8,11 +8,12 @@ package de.canitzp.world;
 
 import de.canitzp.objects.Player;
 import de.canitzp.world.tiles.World1_1;
+import de.canitzp.world.tiles.World1_2;
 
 public class WorldRegister{
 
-    public static World world1_1 = new World1_1(1280, 720);
-    public static World world1_2 = new World1_1(1280, 720);
+    public static World1_1 world1_1 = new World1_1(1280, 720);
+    public static World1_2 world1_2 = new World1_2(1280, 720);
 
 
     public static void renderWorld(World worldToRender){

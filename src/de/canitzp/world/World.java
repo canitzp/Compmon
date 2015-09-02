@@ -8,7 +8,7 @@ package de.canitzp.world;
 
 import de.canitzp.objects.Block;
 import de.canitzp.objects.Player;
-import de.canitzp.rendering.ImageLoader;
+import de.canitzp.rendering.ImageList;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
@@ -18,9 +18,9 @@ import java.util.Set;
 
 public class World {
 
-    private static Set<Block> blockList = new HashSet<Block>();
-    private static Texture texture = ImageLoader.loadTexture("res/world/WorldTile1-Grassland.png");
-    private int WIDTH, HEIGHT;
+    protected static Set<Block> blockList = new HashSet<Block>();
+    protected static Texture texture = ImageList.worldTileGrassland1;
+    protected int WIDTH, HEIGHT;
 
     protected World(int WIDTH, int HEIGHT) {
         this.WIDTH = WIDTH;
@@ -48,40 +48,8 @@ public class World {
         GL11.glEnd();
     }
 
-    public void update(Player object) {
+    public void update(Player player) {
         System.gc();
-        Block.register();
-        for(Block block : blockList){
-            if (block.getWorld() == object.playersWorld()) {
-                if (block.checkCollisionWithObject(object)) {
-                    if (block.checkInstaCollisionWithObject(object) == Side.LEFT) {
-                        object.moveX(-1);
-                    }
-                    if (block.checkInstaCollisionWithObject(object) == Side.BOTTOM) {
-                        object.moveY(-1);
-                    }
-                    if (block.checkInstaCollisionWithObject(object) == Side.TOP) {
-                        object.moveY(1);
-                    }
-                    if (block.checkInstaCollisionWithObject(object) == Side.RIGHT) {
-                        object.moveX(1);
-                    }
-                }
-            }
-
-        }
-
-        if(object.getX() >= this.WIDTH - object.getWidth()){
-            object.moveX(-1);
-        }
-
-    }
-
-    public int getWIDTH() {
-        return WIDTH;
-    }
-
-    public int getHEIGHT() {
-        return HEIGHT;
+        WorldUpdates.update(player, blockList, this);
     }
 }
