@@ -18,7 +18,7 @@ import org.newdawn.slick.opengl.Texture;
 
 public class Block extends Moving {
 
-    public static Block block1 = new Block(new Coords(200, 200), 100, 100, WorldRegister.world);
+    public static Block block1 = new Block(new Coords(200, 200), 100, 100, WorldRegister.world1_2);
     public static Block block2 = new Block(new Coords(100, 50), 10, 10, WorldRegister.world1_1);
     private Texture unknownTexture  = ImageLoader.loadTexture("res/test.png");
     private Texture texture;
@@ -44,30 +44,33 @@ public class Block extends Moving {
 
     }
 
-    public void render(){
-        Color.white.bind();
-        texture.bind();
-        GL11.glBegin(GL11.GL_QUADS);
-        {
-            GL11.glTexCoord2f(0, 0);
-            GL11.glVertex2f(x, y);
-            GL11.glTexCoord2f(texture.getWidth(), 0);
-            GL11.glVertex2f(x + width, y);
-            GL11.glTexCoord2f(texture.getWidth(), texture.getHeight());
-            GL11.glVertex2f(x + width, y + height);
-            GL11.glTexCoord2f(0, texture.getHeight());
-            GL11.glVertex2f(x, y + height);
+    public void render(Player player) {
+        if (player.playersWorld() == world) {
+            Color.white.bind();
+            texture.bind();
+            GL11.glBegin(GL11.GL_QUADS);
+            {
+                GL11.glTexCoord2f(0, 0);
+                GL11.glVertex2f(x, y);
+                GL11.glTexCoord2f(texture.getWidth(), 0);
+                GL11.glVertex2f(x + width, y);
+                GL11.glTexCoord2f(texture.getWidth(), texture.getHeight());
+                GL11.glVertex2f(x + width, y + height);
+                GL11.glTexCoord2f(0, texture.getHeight());
+                GL11.glVertex2f(x, y + height);
+            }
+            GL11.glEnd();
         }
-        GL11.glEnd();
     }
 
-    public boolean checkCollisionWithObject(Moving object){
+    public boolean checkCollisionWithObject(Player object) {
         if((y + height) <= object.getY()) return false;
         if(y >= (object.getY() + object.getHeight())) return false;
         if((x + width) <= object.getX()) return false;
         return x < (object.getX() + object.getWidth());
     }
-    public Side checkInstaCollisionWithObject(Moving object){
+
+    public Side checkInstaCollisionWithObject(Player object) {
         if(checkCollisionWithObject(object)){
             if(object.getX() + object.getHeight() - 1 == x || object.getX() + object.getHeight() == x) return Side.LEFT;
             if(object.getY() + object.getWidth() - 1 == y || object.getY() + object.getWidth() == y) return Side.BOTTOM;
@@ -85,6 +88,10 @@ public class Block extends Moving {
             this.texture = unknownTexture;
         }
         return this;
+    }
+
+    public World getWorld() {
+        return world;
     }
 
 

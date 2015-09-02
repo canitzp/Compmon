@@ -10,7 +10,6 @@ import de.canitzp.objects.Block;
 import de.canitzp.objects.Player;
 import de.canitzp.rendering.Window;
 import de.canitzp.world.World;
-import de.canitzp.world.WorldList;
 import de.canitzp.world.WorldRegister;
 
 public class Main {
@@ -19,7 +18,7 @@ public class Main {
     private static World world;
 
     public Main() {
-        player = new Player(0, 0, 16, 16, WorldList.WORLD.getWorld());
+        player = new Player(0, 0, 16, 16, WorldRegister.world1_2);
 
     }
 
@@ -29,7 +28,6 @@ public class Main {
 
     //Look to Window preInit()
     public void preInit(){
-        WorldRegister.registerWorld();
     }
     public void init(){
 
@@ -43,14 +41,14 @@ public class Main {
         WorldRegister.renderWorld(player.playersWorld());
         //world.render();
         player.render();
-        Block.block1.render();
-        Block.block2.render();
+        Block.block1.render(player);
+        Block.block2.render(player);
     }
 
     public void update() {
         player.update();
         //world.update(player);
         WorldRegister.updateWorld(player);
-        System.out.println(player.playersWorld());
+
     }
 }

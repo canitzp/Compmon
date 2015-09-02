@@ -13,14 +13,18 @@ import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 
-public class Player extends Moving{
+public class Player {
 
     private static final Texture texture = ImageLoader.loadTexture("res/world/Player.png");
     private World world;
+    private int x, y, width, height;
 
     public Player(int x, int y, int width, int height, World world){
-        super(x, y, width, height, world);
         this.world = world;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
     }
 
     public void render(){
@@ -57,8 +61,51 @@ public class Player extends Moving{
         }
     }
 
+    public void moveX(int x) {
+        this.x += x;
+    }
+
+    public void moveY(int y) {
+        this.y += y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
     public World playersWorld(){
         return this.world;
+    }
+
+    public void setWorld(World world) {
+        this.world = world;
     }
 
 }

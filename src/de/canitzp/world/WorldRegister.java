@@ -6,29 +6,21 @@
 
 package de.canitzp.world;
 
-import de.canitzp.objects.Moving;
+import de.canitzp.objects.Player;
 import de.canitzp.world.tiles.World1_1;
 
 public class WorldRegister{
 
-    public static World world, world1_1;
+    public static World world1_1 = new World1_1(1280, 720);
+    public static World world1_2 = new World1_1(1280, 720);
 
-    public static void registerWorld(){
-        world = new World(1280, 720);
-        world1_1 = new World1_1(1280, 720);
-    }
 
     public static void renderWorld(World worldToRender){
-        if(worldToRender == null){
-            world.render();
-        } else {
             worldToRender.render();
-        }
     }
 
-    public static void updateWorld(Moving object){
-        world.update(object);
-        world1_1.update(object);
+    public static void updateWorld(Player player) {
+        world1_1.update(player);
     }
 
 

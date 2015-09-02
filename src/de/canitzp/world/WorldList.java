@@ -8,7 +8,6 @@ package de.canitzp.world;
 
 public enum WorldList {
 
-    WORLD(WorldRegister.world),
     WORLD1_1(WorldRegister.world1_1);
 
 

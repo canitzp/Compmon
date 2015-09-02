@@ -7,7 +7,7 @@
 package de.canitzp.world;
 
 import de.canitzp.objects.Block;
-import de.canitzp.objects.Moving;
+import de.canitzp.objects.Player;
 import de.canitzp.rendering.ImageLoader;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
@@ -22,7 +22,7 @@ public class World {
     private static Texture texture = ImageLoader.loadTexture("res/world/WorldTile1-Grassland.png");
     private int WIDTH, HEIGHT;
 
-    public World(int WIDTH, int HEIGHT){
+    protected World(int WIDTH, int HEIGHT) {
         this.WIDTH = WIDTH;
         this.HEIGHT = HEIGHT;
     }
@@ -48,24 +48,27 @@ public class World {
         GL11.glEnd();
     }
 
-    public void update(Moving object){
+    public void update(Player object) {
         System.gc();
         Block.register();
         for(Block block : blockList){
-            if(block.checkCollisionWithObject(object)){
-                if(block.checkInstaCollisionWithObject(object) == Side.LEFT){
-                    object.moveX(-1);
-                }
-                if(block.checkInstaCollisionWithObject(object) == Side.BOTTOM){
-                    object.moveY(-1);
-                }
-                if(block.checkInstaCollisionWithObject(object) == Side.TOP){
-                    object.moveY(1);
-                }
-                if(block.checkInstaCollisionWithObject(object) == Side.RIGHT){
-                    object.moveX(1);
+            if (block.getWorld() == object.playersWorld()) {
+                if (block.checkCollisionWithObject(object)) {
+                    if (block.checkInstaCollisionWithObject(object) == Side.LEFT) {
+                        object.moveX(-1);
+                    }
+                    if (block.checkInstaCollisionWithObject(object) == Side.BOTTOM) {
+                        object.moveY(-1);
+                    }
+                    if (block.checkInstaCollisionWithObject(object) == Side.TOP) {
+                        object.moveY(1);
+                    }
+                    if (block.checkInstaCollisionWithObject(object) == Side.RIGHT) {
+                        object.moveX(1);
+                    }
                 }
             }
+
         }
 
         if(object.getX() >= this.WIDTH - object.getWidth()){

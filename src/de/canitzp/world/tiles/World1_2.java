@@ -8,11 +8,10 @@ package de.canitzp.world.tiles;
 
 import de.canitzp.world.World;
 
-public class World1_1 extends World {
+public class World1_2 extends World {
 
 
-
-    public World1_1(int WIDTH, int HEIGHT) {
+    public World1_2(int WIDTH, int HEIGHT) {
         super(WIDTH, HEIGHT);
     }
 
