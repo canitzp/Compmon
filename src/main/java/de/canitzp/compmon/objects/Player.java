@@ -4,10 +4,10 @@
  * It is not allowed to copy or redistribute this Code.
  */
 
-package de.canitzp.objects;
+package de.canitzp.compmon.objects;
 
-import de.canitzp.rendering.ImageList;
-import de.canitzp.world.World;
+import de.canitzp.compmon.rendering.ImageList;
+import de.canitzp.compmon.world.World;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
@@ -20,7 +20,7 @@ public class Player {
     private World world;
     private int x, y, width, height;
 
-    public Player(int x, int y, int width, int height, World world){
+    public Player(int x, int y, int width, int height, World world) {
         this.world = world;
         this.x = x;
         this.y = y;
@@ -29,7 +29,7 @@ public class Player {
         this.standPlayerOnGrass = false;
     }
 
-    public void render(){
+    public void render() {
 
         Color.white.bind();
         texture.bind();
@@ -48,17 +48,17 @@ public class Player {
         GL11.glEnd();
     }
 
-    public void update(){
-        if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
+    public void update() {
+        if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
             moveY(1);
         }
-        if(Keyboard.isKeyDown(Keyboard.KEY_S)){
+        if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
             moveY(-1);
         }
-        if(Keyboard.isKeyDown(Keyboard.KEY_A)){
+        if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
             moveX(-1);
         }
-        if(Keyboard.isKeyDown(Keyboard.KEY_D)){
+        if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
             moveX(1);
         }
          /*
@@ -72,36 +72,47 @@ public class Player {
     public void moveX(int x) {
         this.x += x;
     }
+
     public void moveY(int y) {
         this.y += y;
     }
+
     public int getX() {
         return x;
     }
+
     public void setX(int x) {
         this.x = x;
     }
+
     public int getY() {
         return y;
     }
+
     public void setY(int y) {
         this.y = y;
     }
+
     public int getWidth() {
         return width;
     }
+
     public void setWidth(int width) {
         this.width = width;
     }
+
     public int getHeight() {
         return height;
     }
+
     public void setHeight(int height) {
         this.height = height;
     }
-    public World playersWorld(){
+
+    public World playersWorld() {
         return this.world;
     }
+
     public void setWorld(World world) {
         this.world = world;
     }

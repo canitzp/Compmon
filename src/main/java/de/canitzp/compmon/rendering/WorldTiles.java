@@ -4,7 +4,7 @@
  * It is not allowed to copy or redistribute this Code.
  */
 
-package de.canitzp.rendering;
+package de.canitzp.compmon.rendering;
 
 import org.newdawn.slick.opengl.Texture;
 
@@ -13,7 +13,8 @@ public enum WorldTiles {
     Grasslands(ImageLoader.loadTexture("res/world/WorldTile1-Grassland.png"));
 
     private Texture texture;
-    WorldTiles(Texture texture){
+
+    WorldTiles(Texture texture) {
         this.texture = texture;
     }
 

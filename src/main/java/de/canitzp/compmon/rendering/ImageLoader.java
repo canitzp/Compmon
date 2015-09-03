@@ -4,7 +4,7 @@
  * It is not allowed to copy or redistribute this Code.
  */
 
-package de.canitzp.rendering;
+package de.canitzp.compmon.rendering;
 
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class ImageLoader {
 
-    public static Texture loadTexture(String path){
+    public static Texture loadTexture(String path) {
         try {
             return TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(path));
         } catch (IOException e) {

@@ -4,12 +4,12 @@
  * It is not allowed to copy or redistribute this Code.
  */
 
-package de.canitzp.objects;
+package de.canitzp.compmon.objects;
 
-import de.canitzp.rendering.ImageList;
-import de.canitzp.world.Coords;
-import de.canitzp.world.Side;
-import de.canitzp.world.World;
+import de.canitzp.compmon.rendering.ImageList;
+import de.canitzp.compmon.world.Coords;
+import de.canitzp.compmon.world.Side;
+import de.canitzp.compmon.world.World;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
@@ -56,26 +56,30 @@ public class Block extends Moving {
     }
 
     public boolean checkCollisionWithObject(Player object) {
-        if((y + height) <= object.getY()) return false;
-        if(y >= (object.getY() + object.getHeight())) return false;
-        if((x + width) <= object.getX()) return false;
+        if ((y + height) <= object.getY()) return false;
+        if (y >= (object.getY() + object.getHeight())) return false;
+        if ((x + width) <= object.getX()) return false;
         return x < (object.getX() + object.getWidth());
     }
 
     public Side checkInstaCollisionWithObject(Player object) {
-        if(checkCollisionWithObject(object)){
-            if(object.getX() + object.getHeight() - 1 == x || object.getX() + object.getHeight() == x) return Side.LEFT;
-            if(object.getY() + object.getWidth() - 1 == y || object.getY() + object.getWidth() == y) return Side.BOTTOM;
-            if(object.getX() + object.getHeight() - object.getWidth() + 1 == x + width || object.getX() + object.getHeight() -object.getWidth() == x + width) return Side.RIGHT;
-            if(object.getY() + object.getWidth() - object.getHeight() + 1 == y + height || object.getY() + object.getWidth() - object.getHeight() == y + height) return Side.TOP;
+        if (checkCollisionWithObject(object)) {
+            if (object.getX() + object.getHeight() - 1 == x || object.getX() + object.getHeight() == x)
+                return Side.LEFT;
+            if (object.getY() + object.getWidth() - 1 == y || object.getY() + object.getWidth() == y)
+                return Side.BOTTOM;
+            if (object.getX() + object.getHeight() - object.getWidth() + 1 == x + width || object.getX() + object.getHeight() - object.getWidth() == x + width)
+                return Side.RIGHT;
+            if (object.getY() + object.getWidth() - object.getHeight() + 1 == y + height || object.getY() + object.getWidth() - object.getHeight() == y + height)
+                return Side.TOP;
             else return Side.INSIDE;
         }
         return null;
     }
 
     //=====
-    public Block setTexture(Texture texture){
-        if(texture.getImageHeight() > 0){
+    public Block setTexture(Texture texture) {
+        if (texture.getImageHeight() > 0) {
             this.texture = texture;
         } else {
             this.texture = unknownTexture;
@@ -104,8 +108,6 @@ public class Block extends Moving {
     public boolean isGrass() {
         return this.isGrass;
     }
-
-
 
 
 }

@@ -4,14 +4,12 @@
  * It is not allowed to copy or redistribute this Code.
  */
 
-package de.canitzp.world;
+package de.canitzp.compmon.world;
 
-public enum Side {
+public enum WorldType {
 
-    TOP,
-    BOTTOM,
-    LEFT,
-    RIGHT,
-    INSIDE
+    EMPTY,
+    INUSE,
+    FULL
 
 }

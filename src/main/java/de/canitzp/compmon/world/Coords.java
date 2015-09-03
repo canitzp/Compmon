@@ -4,13 +4,13 @@
  * It is not allowed to copy or redistribute this Code.
  */
 
-package de.canitzp.world;
+package de.canitzp.compmon.world;
 
 public class Coords {
 
     private int x, y;
 
-    public Coords(int x, int y){
+    public Coords(int x, int y) {
         this.x = x;
         this.y = y;
     }

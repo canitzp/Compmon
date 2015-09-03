@@ -4,11 +4,12 @@
  * It is not allowed to copy or redistribute this Code.
  */
 
-package de.canitzp.world;
+package de.canitzp.compmon.world;
 
-import de.canitzp.objects.Block;
-import de.canitzp.objects.Player;
-import de.canitzp.rendering.ImageList;
+
+import de.canitzp.compmon.objects.Block;
+import de.canitzp.compmon.objects.Player;
+import de.canitzp.compmon.rendering.ImageList;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;

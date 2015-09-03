@@ -4,11 +4,12 @@
  * It is not allowed to copy or redistribute this Code.
  */
 
-package de.canitzp.world.tiles;
+package de.canitzp.compmon.world.tiles;
 
-import de.canitzp.objects.ObjectList;
-import de.canitzp.rendering.ImageList;
-import de.canitzp.world.WorldRegister;
+
+import de.canitzp.compmon.objects.ObjectList;
+import de.canitzp.compmon.rendering.ImageList;
+import de.canitzp.compmon.world.WorldRegister;
 
 public class World1_1BlockRegistry {
 

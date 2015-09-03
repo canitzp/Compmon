@@ -4,11 +4,11 @@
  * It is not allowed to copy or redistribute this Code.
  */
 
-package de.canitzp.world.tiles;
+package de.canitzp.compmon.world.tiles;
 
-import de.canitzp.objects.Block;
-import de.canitzp.objects.Player;
-import de.canitzp.world.World;
+import de.canitzp.compmon.objects.Block;
+import de.canitzp.compmon.objects.Player;
+import de.canitzp.compmon.world.World;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 

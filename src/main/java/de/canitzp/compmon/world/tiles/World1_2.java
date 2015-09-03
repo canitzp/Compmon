@@ -4,9 +4,10 @@
  * It is not allowed to copy or redistribute this Code.
  */
 
-package de.canitzp.world.tiles;
+package de.canitzp.compmon.world.tiles;
 
-import de.canitzp.world.World;
+
+import de.canitzp.compmon.world.World;
 
 public class World1_2 extends World {
 

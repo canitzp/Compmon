@@ -4,11 +4,12 @@
  * It is not allowed to copy or redistribute this Code.
  */
 
-package de.canitzp;
+package de.canitzp.compmon;
 
-import de.canitzp.objects.Player;
-import de.canitzp.rendering.Window;
-import de.canitzp.world.WorldRegister;
+
+import de.canitzp.compmon.objects.Player;
+import de.canitzp.compmon.rendering.Window;
+import de.canitzp.compmon.world.WorldRegister;
 
 public class Main {
 
@@ -18,22 +19,24 @@ public class Main {
         player = new Player(0, 0, 16, 16, WorldRegister.world1_1);
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Window.startup();
     }
 
     //Look to Window preInit()
-    public void preInit(){
+    public void preInit() {
     }
-    public void init(){
 
-    }
-    public void postInit(){
+    public void init() {
 
     }
 
+    public void postInit() {
 
-    public void render(){
+    }
+
+
+    public void render() {
         WorldRegister.renderWorld(player.playersWorld());
         //Block.block1.render(player);
         //Block.block2.render(player);

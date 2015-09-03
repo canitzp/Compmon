@@ -4,17 +4,17 @@
  * It is not allowed to copy or redistribute this Code.
  */
 
-package de.canitzp.rendering;
+package de.canitzp.compmon.rendering;
 
 
-import de.canitzp.Main;
+import de.canitzp.compmon.Main;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
-public class Window{
+public class Window {
 
     private static int WIDTH = 1280;
     private static int HEIGHT = 720;
@@ -23,7 +23,7 @@ public class Window{
 
 
     //Initializations:
-    public static void startup(){
+    public static void startup() {
         initEngine();
         initGL();
         initGame();
@@ -33,23 +33,20 @@ public class Window{
     }
 
     //Only to Load Lists like Block Collision List.
-    private static void preInit(){
+    private static void preInit() {
         main.preInit();
     }
-    private static void init(){
+
+    private static void init() {
         main.init();
         postInit();
     }
-    private static void postInit(){
+
+    private static void postInit() {
         main.postInit();
 
 
     }
-
-
-
-
-
 
 
     private static void initGame() {
@@ -57,7 +54,7 @@ public class Window{
     }
 
     private static void gameloop() {
-        while (!Display.isCloseRequested()){
+        while (!Display.isCloseRequested()) {
             System.gc();
             Display.sync(FPS);
             Display.update();
@@ -69,12 +66,12 @@ public class Window{
 
     private static void update() {
         main.update();
-        if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)){
+        if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
             clean();
         }
     }
 
-    private static void initEngine(){
+    private static void initEngine() {
         try {
             Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
             Display.setTitle("Compmon");
@@ -103,13 +100,11 @@ public class Window{
 
     }
 
-    private static void clean(){
+    private static void clean() {
         Display.destroy();
         Keyboard.destroy();
         System.exit(0);
     }
-
-
 
 
 }

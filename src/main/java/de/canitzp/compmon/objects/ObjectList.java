@@ -4,11 +4,11 @@
  * It is not allowed to copy or redistribute this Code.
  */
 
-package de.canitzp.objects;
+package de.canitzp.compmon.objects;
 
 
-import de.canitzp.world.Coords;
-import de.canitzp.world.World;
+import de.canitzp.compmon.world.Coords;
+import de.canitzp.compmon.world.World;
 
 public enum ObjectList {
 
@@ -22,7 +22,7 @@ public enum ObjectList {
         this.height = height;
     }
 
-    public Block makeObjectAt(int x, int y, World world){
+    public Block makeObjectAt(int x, int y, World world) {
         return new Block(new Coords(x, y), this.width, this.height, world);
     }
 

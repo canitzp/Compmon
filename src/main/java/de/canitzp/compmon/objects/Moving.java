@@ -4,9 +4,10 @@
  * It is not allowed to copy or redistribute this Code.
  */
 
-package de.canitzp.objects;
+package de.canitzp.compmon.objects;
 
-import de.canitzp.world.World;
+
+import de.canitzp.compmon.world.World;
 
 public class Moving {
 
@@ -55,10 +56,11 @@ public class Moving {
         this.height = height;
     }
 
-    public void moveX(int x){
+    public void moveX(int x) {
         this.x += x;
     }
-    public void moveY(int y){
+
+    public void moveY(int y) {
         this.y += y;
     }
 
