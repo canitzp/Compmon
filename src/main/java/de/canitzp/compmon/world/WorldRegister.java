@@ -6,7 +6,6 @@
 
 package de.canitzp.compmon.world;
 
-import de.canitzp.compmon.objects.Player;
 import de.canitzp.compmon.world.tiles.World1_1;
 import de.canitzp.compmon.world.tiles.World1_2;
 
@@ -20,9 +19,8 @@ public class WorldRegister {
         worldToRender.render();
     }
 
-    public static void updateWorld(Player player) {
-        world1_1.update(player);
+    public static void registerWorld(World worldToRegister) {
+        worldToRegister.register();
     }
-
 
 }

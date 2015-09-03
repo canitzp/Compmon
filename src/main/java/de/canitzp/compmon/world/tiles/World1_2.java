@@ -16,5 +16,10 @@ public class World1_2 extends World {
         super(WIDTH, HEIGHT);
     }
 
+    @Override
+    public void register() {
+        World1_2BlockRegistry.register();
+    }
+
 
 }

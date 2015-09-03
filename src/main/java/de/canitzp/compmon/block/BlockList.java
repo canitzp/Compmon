@@ -4,20 +4,21 @@
  * It is not allowed to copy or redistribute this Code.
  */
 
-package de.canitzp.compmon.objects;
+package de.canitzp.compmon.block;
 
 
 import de.canitzp.compmon.world.Coords;
 import de.canitzp.compmon.world.World;
 
-public enum ObjectList {
+public enum BlockList {
 
-    GRASS(10, 10);
+    GRASS(10, 10),
+    TELEPORTPAD(10, 10);
 
 
     private int width, height;
 
-    ObjectList(int width, int height) {
+    BlockList(int width, int height) {
         this.width = width;
         this.height = height;
     }

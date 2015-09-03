@@ -10,9 +10,10 @@ import org.newdawn.slick.opengl.Texture;
 
 public class ImageList {
 
-    public static final Texture unknown = ImageLoader.loadTexture("assets/compmon/test.png");
-    public static final Texture player1 = ImageLoader.loadTexture("assets/compmon/world/Player.png");
-    public static final Texture worldTileGrassland1 = ImageLoader.loadTexture("assets/compmon/world/WorldTile1-Grassland.png");
-    public static final Texture grass1 = ImageLoader.loadTexture("assets/compmon/world/Grass1.png");
+    public static final Texture unknown = ImageLoader.loadTexture("test");
+    public static final Texture player1 = ImageLoader.loadTexture("world/Player");
+    public static final Texture worldTileGrassland1 = ImageLoader.loadTexture("world/WorldTile1-Grassland");
+    public static final Texture grass1 = ImageLoader.loadTexture("blocks/Grass1");
+    public static final Texture TeleportPad = ImageLoader.loadTexture("blocks/TeleportPad");
 
 }

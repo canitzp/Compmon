@@ -14,9 +14,9 @@ import java.io.IOException;
 
 public class ImageLoader {
 
-    public static Texture loadTexture(String path) {
+    public static Texture loadTexture(String typeAndName) {
         try {
-            return TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(path));
+            return TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("assets/compmon/" + typeAndName + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

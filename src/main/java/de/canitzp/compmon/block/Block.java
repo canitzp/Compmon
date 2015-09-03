@@ -4,11 +4,14 @@
  * It is not allowed to copy or redistribute this Code.
  */
 
-package de.canitzp.compmon.objects;
+package de.canitzp.compmon.block;
 
+import de.canitzp.compmon.objects.Moving;
+import de.canitzp.compmon.objects.Player;
 import de.canitzp.compmon.rendering.ImageList;
 import de.canitzp.compmon.world.Coords;
 import de.canitzp.compmon.world.Side;
+import de.canitzp.compmon.world.TeleportationCoords;
 import de.canitzp.compmon.world.World;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
@@ -19,10 +22,11 @@ public class Block extends Moving {
 
     protected boolean canCollide;
     protected boolean isGrass;
+    protected boolean isTeleportPad;
+    protected TeleportationCoords teleportationCoords;
     private Texture unknownTexture = ImageList.unknown;
     private Texture texture;
     private int x, y, width, height;
-    private Coords coords;
 
     public Block(Coords coords, int width, int height, World world) {
         super(coords.getX(), coords.getY(), width, height, world);
@@ -30,10 +34,10 @@ public class Block extends Moving {
         this.y = coords.getY();
         this.width = width;
         this.height = height;
-        this.coords = coords;
         this.texture = unknownTexture;
         this.canCollide = true;
         this.isGrass = false;
+        this.isTeleportPad = false;
     }
 
     public void render(Player player) {
@@ -109,5 +113,21 @@ public class Block extends Moving {
         return this.isGrass;
     }
 
+    public Block toTeleportPad() {
+        this.isTeleportPad = true;
+        return this;
+    }
 
+    public boolean isTeleportPad() {
+        return this.isTeleportPad;
+    }
+
+    public Block setTeleportationTarget(World world, Coords coords) {
+        teleportationCoords = new TeleportationCoords(world, coords);
+        return this;
+    }
+
+    public TeleportationCoords getTeleportationCoords() {
+        return isTeleportPad ? this.teleportationCoords : null;
+    }
 }

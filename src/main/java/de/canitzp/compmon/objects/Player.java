@@ -6,6 +6,7 @@
 
 package de.canitzp.compmon.objects;
 
+import de.canitzp.compmon.Main;
 import de.canitzp.compmon.rendering.ImageList;
 import de.canitzp.compmon.world.World;
 import org.lwjgl.input.Keyboard;
@@ -67,6 +68,14 @@ public class Player {
             moveY(2);
         }
          */
+        /**
+         * Debugging Screen:
+         */
+        if (Keyboard.isKeyDown(Keyboard.KEY_F3) && !Main.isDebugOn()) {
+            Main.setDebugOn();
+        } else if (Keyboard.isKeyDown(Keyboard.KEY_F3) && Main.isDebugOn()) {
+            Main.setDebugOff();
+        }
     }
 
     public void moveX(int x) {

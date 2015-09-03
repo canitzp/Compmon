@@ -9,6 +9,7 @@ package de.canitzp.compmon.rendering;
 
 import de.canitzp.compmon.Main;
 import org.lwjgl.LWJGLException;
+import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -19,7 +20,9 @@ public class Window {
     private static int WIDTH = 1280;
     private static int HEIGHT = 720;
     private static int FPS = 120;
+    private static int currentFPS, debugFPS;
     private static Main main;
+    private static long getSystemTime = Sys.getTime() * 1000L / Sys.getTimerResolution();
 
 
     //Initializations:
@@ -28,15 +31,17 @@ public class Window {
         initGL();
         initGame();
         preInit();
-        gameloop();
-        init();
     }
 
     //Only to Load Lists like Block Collision List.
     private static void preInit() {
         main.preInit();
+        render();
+        update();
+        init();
     }
 
+    //Load Objects on World after Loading World
     private static void init() {
         main.init();
         postInit();
@@ -45,7 +50,7 @@ public class Window {
     private static void postInit() {
         main.postInit();
 
-
+        gameloop();
     }
 
 
@@ -60,6 +65,12 @@ public class Window {
             Display.update();
             render();
             update();
+            currentFPS++;
+            while (Sys.getTime() >= getSystemTime + 1000L) {
+                debugFPS = currentFPS;
+                getSystemTime += 1000L;
+                currentFPS = 0;
+            }
         }
         clean();
     }
@@ -83,14 +94,21 @@ public class Window {
     }
 
     private static void initGL() {
-        GL11.glOrtho(0, Display.getWidth(), 0, Display.getHeight(), 1, -1);
-        GL11.glMatrixMode(GL11.GL_PROJECTION);
-        GL11.glLoadIdentity();
-        GL11.glMatrixMode(GL11.GL_MODELVIEW);
-        GL11.glClearColor(0, 0, 0, 1);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glShadeModel(GL11.GL_SMOOTH);
+        GL11.glDisable(GL11.GL_DEPTH_TEST);
+        GL11.glDisable(GL11.GL_LIGHTING);
+        GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        GL11.glClearDepth(1);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-
+        GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
+        GL11.glMatrixMode(GL11.GL_MODELVIEW);
+        GL11.glMatrixMode(GL11.GL_PROJECTION);
+        GL11.glLoadIdentity();
+        GL11.glOrtho(0, Display.getWidth(), 0, Display.getHeight(), 1, -1);
+        GL11.glMatrixMode(GL11.GL_MODELVIEW);
+        GL11.glClearColor(0, 0, 0, 1);
     }
 
 
@@ -104,6 +122,10 @@ public class Window {
         Display.destroy();
         Keyboard.destroy();
         System.exit(0);
+    }
+
+    public static int getFramerate() {
+        return debugFPS;
     }
 
 
