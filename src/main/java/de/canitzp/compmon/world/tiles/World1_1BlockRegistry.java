@@ -22,6 +22,7 @@ public class World1_1BlockRegistry extends WorldObjectRegistry {
         makeGrass(world, 60, 70);
         makeGrass(world, 70, 70);
         makeGrass(world, 80, 70);
-        makeTeleportPad(world, 90, 90, WorldRegister.world1_2, new Coords(150, 150));
+        makeTeleportPad(new Coords(90, 90, world), new Coords(150, 150, WorldRegister.world1_2));
+        makeHouse(new Coords(150, 150, world), 15, 0, 5, new Coords(400, 400, WorldRegister.world1_2));
     }
 }

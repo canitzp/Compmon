@@ -31,17 +31,19 @@ public class WorldUpdates {
                     }
                 }
             }
-            if (block.isGrass() && block.checkInstaCollisionWithObject(player) == Side.INSIDE) {
+            if (block.isGrass() && block.checkInstaCollisionWithObject(player) == Side.INSIDE && player.playersWorld() == block.getWorld()) {
                 player.setStandPlayerOnGrass();
             }
-            if (block.isTeleportPad() && block.checkInstaCollisionWithObject(player) == Side.INSIDE) {
-                TeleportationCoords teleportationCoords = block.getTeleportationCoords();
+            if (block.isTeleportPad() && block.checkInstaCollisionWithObject(player) == Side.INSIDE && player.playersWorld() == block.getWorld()) {
+                Coords teleportationCoords = block.getTeleportationCoords();
                 player.setWorld(teleportationCoords.getTeleportationTargetWorld());
-                player.setX(teleportationCoords.getTeleportationTargetCoords().getX());
-                player.setY(teleportationCoords.getTeleportationTargetCoords().getY());
+                player.setX(teleportationCoords.getX());
+                player.setY(teleportationCoords.getY());
                 WorldRegister.registerWorld(teleportationCoords.getTeleportationTargetWorld());
             }
+            block.update(player);
         }
+
         if (player.getX() >= world.WIDTH - player.getWidth()) {
             player.moveX(-1);
         }

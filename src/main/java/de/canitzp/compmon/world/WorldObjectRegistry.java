@@ -15,7 +15,11 @@ public class WorldObjectRegistry {
         world.addToRegisterListLayer2(BlockList.GRASS.makeObjectAt(x, y, world).setToGrass().setTexture(ImageList.grass1).noCollision());
     }
 
-    protected static void makeTeleportPad(World world, int x, int y, World targetWorld, Coords targetCoords) {
-        world.addToRegisterListLayer3(BlockList.TELEPORTPAD.makeObjectAt(x, y, world).noCollision().setTexture(ImageList.TeleportPad).toTeleportPad().setTeleportationTarget(targetWorld, targetCoords));
+    protected static void makeTeleportPad(Coords coords, Coords targetCoords) {
+        coords.getWorld().addToRegisterListLayer3(BlockList.TELEPORTPAD.makeObjectAt(coords.getX(), coords.getY(), coords.getWorld()).noCollision().setTexture(ImageList.TeleportPad).toTeleportPad().setTeleportationTarget(targetCoords));
+    }
+
+    protected static void makeHouse(Coords coords, int xDoor, int yDoor, int widthDoor, Coords targetCoords) {
+        coords.getWorld().addToRegisterListLayer2(BlockList.HOUSE1.makeHouseAt(coords, xDoor, yDoor, widthDoor, targetCoords).setTexture(ImageList.HouseBlue1));
     }
 }

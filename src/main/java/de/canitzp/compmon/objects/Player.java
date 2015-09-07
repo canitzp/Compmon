@@ -8,23 +8,25 @@ package de.canitzp.compmon.objects;
 
 import de.canitzp.compmon.Main;
 import de.canitzp.compmon.rendering.ImageList;
+import de.canitzp.compmon.world.Coords;
 import de.canitzp.compmon.world.World;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 
-public class Player {
+public class Player extends Moving {
 
     private static final Texture texture = ImageList.player1;
     protected boolean standPlayerOnGrass;
     private World world;
     private int x, y, width, height;
 
-    public Player(int x, int y, int width, int height, World world) {
-        this.world = world;
-        this.x = x;
-        this.y = y;
+    public Player(Coords coords, int width, int height) {
+        super(coords, width, height);
+        this.world = coords.getWorld();
+        this.x = coords.getX();
+        this.y = coords.getY() + world.getHEIGHT() - (y * 2) - height - 2;
         this.width = width;
         this.height = height;
         this.standPlayerOnGrass = false;
@@ -51,10 +53,10 @@ public class Player {
 
     public void update() {
         if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-            moveY(1);
+            moveY(-1);
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-            moveY(-1);
+            moveY(1);
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
             moveX(-1);
@@ -99,7 +101,7 @@ public class Player {
     }
 
     public void setY(int y) {
-        this.y = y;
+        this.y = y + world.getHEIGHT() - (y * 2);
     }
 
     public int getWidth() {

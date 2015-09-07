@@ -10,6 +10,7 @@ package de.canitzp.compmon;
 import de.canitzp.compmon.objects.Player;
 import de.canitzp.compmon.rendering.Debugging;
 import de.canitzp.compmon.rendering.Window;
+import de.canitzp.compmon.world.Coords;
 import de.canitzp.compmon.world.World;
 import de.canitzp.compmon.world.WorldRegister;
 
@@ -19,7 +20,6 @@ public class Main {
     private static boolean debugOn;
 
     public Main() {
-        player = new Player(0, 0, 16, 16, WorldRegister.world1_1);
     }
 
     public static void main(String[] args) {
@@ -43,6 +43,7 @@ public class Main {
     }
 
     public void init() {
+        player = new Player(new Coords(0, 0, WorldRegister.world1_1), 16, 16);
         WorldRegister.registerWorld(player.playersWorld());
     }
 

@@ -9,10 +9,12 @@ package de.canitzp.compmon.world;
 public class Coords {
 
     private int x, y;
+    private World world;
 
-    public Coords(int x, int y) {
+    public Coords(int x, int y, World world) {
         this.x = x;
         this.y = y;
+        this.world = world;
     }
 
     public int getX() {
@@ -23,5 +25,11 @@ public class Coords {
         return y;
     }
 
+    public World getWorld() {
+        return world;
+    }
 
+    public World getTeleportationTargetWorld() {
+        return this.world;
+    }
 }

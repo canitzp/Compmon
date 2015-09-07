@@ -18,5 +18,4 @@ public class Debugging {
     public static void render() {
         font.drawString(0, 690, Integer.toString(Window.getFramerate()));
     }
-
 }

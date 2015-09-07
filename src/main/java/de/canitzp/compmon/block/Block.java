@@ -11,7 +11,6 @@ import de.canitzp.compmon.objects.Player;
 import de.canitzp.compmon.rendering.ImageList;
 import de.canitzp.compmon.world.Coords;
 import de.canitzp.compmon.world.Side;
-import de.canitzp.compmon.world.TeleportationCoords;
 import de.canitzp.compmon.world.World;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
@@ -23,13 +22,13 @@ public class Block extends Moving {
     protected boolean canCollide;
     protected boolean isGrass;
     protected boolean isTeleportPad;
-    protected TeleportationCoords teleportationCoords;
-    private Texture unknownTexture = ImageList.unknown;
-    private Texture texture;
-    private int x, y, width, height;
+    protected Coords teleportationCoords;
+    protected Texture unknownTexture = ImageList.unknown;
+    protected Texture texture;
+    protected int x, y, width, height;
 
-    public Block(Coords coords, int width, int height, World world) {
-        super(coords.getX(), coords.getY(), width, height, world);
+    public Block(Coords coords, int width, int height) {
+        super(coords, width, height);
         this.x = coords.getX();
         this.y = coords.getY();
         this.width = width;
@@ -40,6 +39,10 @@ public class Block extends Moving {
         this.isTeleportPad = false;
     }
 
+    public void update(Player player) {
+
+    }
+
     public void render(Player player) {
         if (player.playersWorld() == world) {
             Color.white.bind();
@@ -47,19 +50,20 @@ public class Block extends Moving {
             GL11.glBegin(GL11.GL_QUADS);
             {
                 GL11.glTexCoord2f(0, 0);
-                GL11.glVertex2f(x, y);
+                GL11.glVertex2f(x, y + world.getHEIGHT() - (y * 2) - height);
                 GL11.glTexCoord2f(texture.getWidth(), 0);
-                GL11.glVertex2f(x + width, y);
+                GL11.glVertex2f(x + width, y + world.getHEIGHT() - (y * 2) - height);
                 GL11.glTexCoord2f(texture.getWidth(), texture.getHeight());
-                GL11.glVertex2f(x + width, y + height);
+                GL11.glVertex2f(x + width, y + height + world.getHEIGHT() - (y * 2) - height);
                 GL11.glTexCoord2f(0, texture.getHeight());
-                GL11.glVertex2f(x, y + height);
+                GL11.glVertex2f(x, y + height + world.getHEIGHT() - (y * 2) - height);
             }
             GL11.glEnd();
         }
     }
 
     public boolean checkCollisionWithObject(Player object) {
+        int y = this.y + world.getHEIGHT() - (x * 2);
         if ((y + height) <= object.getY()) return false;
         if (y >= (object.getY() + object.getHeight())) return false;
         if ((x + width) <= object.getX()) return false;
@@ -122,12 +126,12 @@ public class Block extends Moving {
         return this.isTeleportPad;
     }
 
-    public Block setTeleportationTarget(World world, Coords coords) {
-        teleportationCoords = new TeleportationCoords(world, coords);
+    public Block setTeleportationTarget(Coords coords) {
+        teleportationCoords = coords;
         return this;
     }
 
-    public TeleportationCoords getTeleportationCoords() {
+    public Coords getTeleportationCoords() {
         return isTeleportPad ? this.teleportationCoords : null;
     }
 }

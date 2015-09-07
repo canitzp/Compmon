@@ -7,6 +7,7 @@
 package de.canitzp.compmon.objects;
 
 
+import de.canitzp.compmon.world.Coords;
 import de.canitzp.compmon.world.World;
 
 public class Moving {
@@ -16,12 +17,12 @@ public class Moving {
     protected World world;
 
 
-    public Moving(int x, int y, int width, int height, World world) {
-        this.x = x;
-        this.y = y;
+    public Moving(Coords coords, int width, int height) {
+        this.x = coords.getX();
+        this.y = coords.getY() + coords.getWorld().getHEIGHT() - (coords.getY() * 2);
         this.width = width;
         this.height = height;
-        this.world = world;
+        this.world = coords.getWorld();
     }
 
     public int getX() {

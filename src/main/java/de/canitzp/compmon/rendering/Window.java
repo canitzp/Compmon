@@ -19,7 +19,7 @@ public class Window {
 
     private static int WIDTH = 1280;
     private static int HEIGHT = 720;
-    private static int FPS = 120;
+    private static int FPS = 60;
     private static int currentFPS, debugFPS;
     private static Main main;
     private static long getSystemTime = Sys.getTime() * 1000L / Sys.getTimerResolution();
@@ -36,14 +36,14 @@ public class Window {
     //Only to Load Lists like Block Collision List.
     private static void preInit() {
         main.preInit();
-        render();
-        update();
         init();
     }
 
     //Load Objects on World after Loading World
     private static void init() {
         main.init();
+        render();
+        update();
         postInit();
     }
 
@@ -106,7 +106,7 @@ public class Window {
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        GL11.glOrtho(0, Display.getWidth(), 0, Display.getHeight(), 1, -1);
+        GL11.glOrtho(0, Display.getWidth(), Display.getHeight(), 0, 1, -1);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         GL11.glClearColor(0, 0, 0, 1);
     }

@@ -121,6 +121,11 @@ public class World {
         toRegisterLayer5.add(block);
     }
 
+    public int getWIDTH() {
+        return WIDTH;
+    }
 
-
+    public int getHEIGHT() {
+        return HEIGHT;
+    }
 }
