@@ -53,7 +53,6 @@ public class Window {
         gameloop();
     }
 
-
     private static void initGame() {
         main = new Main();
     }
@@ -130,5 +129,3 @@ public class Window {
 
 
 }
-
-

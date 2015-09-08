@@ -6,6 +6,7 @@
 
 package de.canitzp.compmon.rendering;
 
+import de.canitzp.compmon.Main;
 import org.newdawn.slick.TrueTypeFont;
 
 import java.awt.*;
@@ -16,6 +17,7 @@ public class Debugging {
     private static TrueTypeFont font = new TrueTypeFont(awtFont, false);
 
     public static void render() {
-        font.drawString(0, 690, Integer.toString(Window.getFramerate()));
+        String layer1 = Window.getFramerate() + " - World: " + Main.player.getWorld().getName();
+        font.drawString(0, 0, layer1);
     }
 }

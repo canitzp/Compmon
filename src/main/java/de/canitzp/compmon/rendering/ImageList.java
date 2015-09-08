@@ -16,5 +16,6 @@ public class ImageList {
     public static final Texture grass1 = ImageLoader.loadTexture("blocks/Grass1");
     public static final Texture TeleportPad = ImageLoader.loadTexture("blocks/TeleportPad");
     public static final Texture HouseBlue1 = ImageLoader.loadTexture("blocks/House1");
+    public static final Texture HouseSandy1 = ImageLoader.loadTexture("blocks/House2");
 
 }

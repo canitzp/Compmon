@@ -7,6 +7,7 @@
 package de.canitzp.compmon.objects;
 
 import de.canitzp.compmon.Main;
+import de.canitzp.compmon.block.Block;
 import de.canitzp.compmon.rendering.ImageList;
 import de.canitzp.compmon.world.Coords;
 import de.canitzp.compmon.world.World;
@@ -80,14 +81,6 @@ public class Player extends Moving {
         }
     }
 
-    public void moveX(int x) {
-        this.x += x;
-    }
-
-    public void moveY(int y) {
-        this.y += y;
-    }
-
     public int getX() {
         return x;
     }
@@ -101,7 +94,7 @@ public class Player extends Moving {
     }
 
     public void setY(int y) {
-        this.y = y + world.getHEIGHT() - (y * 2);
+        this.y = y;
     }
 
     public int getWidth() {
@@ -120,6 +113,14 @@ public class Player extends Moving {
         this.height = height;
     }
 
+    public void moveX(int x) {
+        this.x += x;
+    }
+
+    public void moveY(int y) {
+        this.y += y;
+    }
+
     public World playersWorld() {
         return this.world;
     }
@@ -134,5 +135,9 @@ public class Player extends Moving {
 
     public void setStandPlayerOnGrass() {
         this.standPlayerOnGrass = true;
+    }
+
+    public boolean isPlayerOverACollision(Block block) {
+        return block.getX() <= x + width && block.getY() <= y + height - 4 && block.getX() >= x && block.getY() >= y + height - 4;
     }
 }

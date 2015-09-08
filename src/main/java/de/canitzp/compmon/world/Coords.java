@@ -28,8 +28,4 @@ public class Coords {
     public World getWorld() {
         return world;
     }
-
-    public World getTeleportationTargetWorld() {
-        return this.world;
-    }
 }

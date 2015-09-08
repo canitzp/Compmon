@@ -13,7 +13,7 @@ public class World1_2 extends World {
 
 
     public World1_2(int WIDTH, int HEIGHT) {
-        super(WIDTH, HEIGHT);
+        super(WIDTH, HEIGHT, "World1_2");
     }
 
     @Override

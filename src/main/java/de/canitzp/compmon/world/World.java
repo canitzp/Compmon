@@ -36,9 +36,12 @@ public class World {
     protected static Set<Block> toRegisterLayer4 = new HashSet<Block>();
     protected static Set<Block> toRegisterLayer5 = new HashSet<Block>();
     protected int WIDTH, HEIGHT;
-    protected World(int WIDTH, int HEIGHT) {
+    protected String name;
+
+    protected World(int WIDTH, int HEIGHT, String name) {
         this.WIDTH = WIDTH;
         this.HEIGHT = HEIGHT;
+        this.name = name;
     }
 
     public static void renderBlocksLayer1(Player player) {
@@ -127,5 +130,9 @@ public class World {
 
     public int getHEIGHT() {
         return HEIGHT;
+    }
+
+    public String getName() {
+        return name;
     }
 }

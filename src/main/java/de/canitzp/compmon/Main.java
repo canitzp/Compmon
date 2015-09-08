@@ -16,7 +16,7 @@ import de.canitzp.compmon.world.WorldRegister;
 
 public class Main {
 
-    private static Player player;
+    public static Player player;
     private static boolean debugOn;
 
     public Main() {

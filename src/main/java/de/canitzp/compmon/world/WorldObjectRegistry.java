@@ -20,6 +20,6 @@ public class WorldObjectRegistry {
     }
 
     protected static void makeHouse(Coords coords, int xDoor, int yDoor, int widthDoor, Coords targetCoords) {
-        coords.getWorld().addToRegisterListLayer2(BlockList.HOUSE1.makeHouseAt(coords, xDoor, yDoor, widthDoor, targetCoords).setTexture(ImageList.HouseBlue1));
+        coords.getWorld().addToRegisterListLayer2(BlockList.HOUSE2.makeHouseAt(coords, xDoor, yDoor, widthDoor, targetCoords).setTexture(ImageList.HouseSandy1));
     }
 }

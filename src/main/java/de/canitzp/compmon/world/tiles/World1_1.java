@@ -11,7 +11,7 @@ import de.canitzp.compmon.world.World;
 public class World1_1 extends World {
 
     public World1_1(int WIDTH, int HEIGHT) {
-        super(WIDTH, HEIGHT);
+        super(WIDTH, HEIGHT, "World1_1");
     }
 
     @Override

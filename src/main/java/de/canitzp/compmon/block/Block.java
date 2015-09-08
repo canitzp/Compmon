@@ -26,6 +26,7 @@ public class Block extends Moving {
     protected Texture unknownTexture = ImageList.unknown;
     protected Texture texture;
     protected int x, y, width, height;
+    protected Coords coords;
 
     public Block(Coords coords, int width, int height) {
         super(coords, width, height);
@@ -37,6 +38,7 @@ public class Block extends Moving {
         this.canCollide = true;
         this.isGrass = false;
         this.isTeleportPad = false;
+        this.coords = coords;
     }
 
     public void update(Player player) {
@@ -62,16 +64,17 @@ public class Block extends Moving {
         }
     }
 
-    public boolean checkCollisionWithObject(Player object) {
-        int y = this.y + world.getHEIGHT() - (x * 2);
+    public boolean checkCollisionWithObject(Moving object) {
+        int y = this.y + world.getHEIGHT() - (this.y * 2) - height;
         if ((y + height) <= object.getY()) return false;
         if (y >= (object.getY() + object.getHeight())) return false;
         if ((x + width) <= object.getX()) return false;
         return x < (object.getX() + object.getWidth());
     }
 
-    public Side checkInstaCollisionWithObject(Player object) {
+    public Side checkInstaCollisionWithObject(Moving object) {
         if (checkCollisionWithObject(object)) {
+            int y = this.y + world.getHEIGHT() - (this.y * 2) - height;
             if (object.getX() + object.getHeight() - 1 == x || object.getX() + object.getHeight() == x)
                 return Side.LEFT;
             if (object.getY() + object.getWidth() - 1 == y || object.getY() + object.getWidth() == y)
@@ -133,5 +136,9 @@ public class Block extends Moving {
 
     public Coords getTeleportationCoords() {
         return isTeleportPad ? this.teleportationCoords : null;
+    }
+
+    public Coords getCoords() {
+        return coords;
     }
 }

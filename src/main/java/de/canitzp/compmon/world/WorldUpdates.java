@@ -34,12 +34,12 @@ public class WorldUpdates {
             if (block.isGrass() && block.checkInstaCollisionWithObject(player) == Side.INSIDE && player.playersWorld() == block.getWorld()) {
                 player.setStandPlayerOnGrass();
             }
-            if (block.isTeleportPad() && block.checkInstaCollisionWithObject(player) == Side.INSIDE && player.playersWorld() == block.getWorld()) {
+            if (block.isTeleportPad() && player.playersWorld() == block.getWorld() && player.isPlayerOverACollision(block)) {
                 Coords teleportationCoords = block.getTeleportationCoords();
-                player.setWorld(teleportationCoords.getTeleportationTargetWorld());
+                player.setWorld(teleportationCoords.getWorld());
                 player.setX(teleportationCoords.getX());
-                player.setY(teleportationCoords.getY());
-                WorldRegister.registerWorld(teleportationCoords.getTeleportationTargetWorld());
+                player.setY(teleportationCoords.getY() + world.getHEIGHT() - (teleportationCoords.getY() * 2));
+                WorldRegister.registerWorld(teleportationCoords.getWorld());
             }
             block.update(player);
         }

@@ -15,7 +15,8 @@ public enum BlockList {
 
     GRASS(10, 10),
     TELEPORTPAD(10, 10),
-    HOUSE1(64, 64);
+    HOUSE1(32, 32),
+    HOUSE2(42, 33);
 
 
     private int width, height;
