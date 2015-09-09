@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: libraries/lwjgl.jar libraries/slick-util.jar
+Main-Class: de.canitzp.compmon.Main
+

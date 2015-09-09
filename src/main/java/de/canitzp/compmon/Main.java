@@ -14,15 +14,19 @@ import de.canitzp.compmon.world.Coords;
 import de.canitzp.compmon.world.World;
 import de.canitzp.compmon.world.WorldRegister;
 
+import java.io.File;
+
 public class Main {
 
     public static Player player;
     private static boolean debugOn;
+    private static File mainDir = new File(System.getProperty("user.home") + "/Compmon");
 
     public Main() {
     }
 
     public static void main(String[] args) {
+        System.setProperty("org.lwjgl.librarypath", new File(System.getProperty("user.home") + "/Compmon/libraries/native").getAbsolutePath());
         Window.startup();
     }
 
