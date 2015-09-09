@@ -7,7 +7,6 @@
 package de.canitzp.compmon.rendering;
 
 
-import de.canitzp.compmon.FirstStart;
 import de.canitzp.compmon.Main;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
@@ -30,7 +29,6 @@ public class Window {
 
     //Initializations:
     public static void startup() {
-        FirstStart.closeFrame();
         initEngine();
         initGL();
         initGame();
